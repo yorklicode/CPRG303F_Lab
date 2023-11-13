@@ -14,6 +14,9 @@ import {
   Text,
   useColorScheme,
   View,
+  TextInput,
+  Button,
+  Pressable
 } from 'react-native';
 
 import {
@@ -24,6 +27,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import ToDoList from './ToDoList';
+import ToDoForm from './ToDoForm';
 
 
 function Section({children, title}){
@@ -60,38 +65,51 @@ function App() {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.jsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+   /*
+   <SafeAreaView> 
+    <ScrollView>
+    
+    {*//* Hard-coded tasks *//*}
+      <Pressable>
+        <View style={[styles.task, styles.completed]}>
+          <Text style={styles.taskText}>Do laundry</Text>
         </View>
-      </ScrollView>
+      </Pressable>
+      <Pressable>
+        <View style={styles.task}>
+          <Text style={styles.taskText}>Go to gym</Text>
+        </View>
+      </Pressable>
+      <Pressable>
+        <View style={[styles.task, styles.completed]}>
+          <Text style={styles.taskText}>Walk dog</Text>
+        </View>
+      </Pressable>
+    </ScrollView>
+    {*//* Form to add new tasks *//*}
+    <View style={styles.form}>
+      <TextInput
+        style={styles.input}
+        placeholder="Add a new task..."
+      />
+      <Button title="Add" />
+    </View>
+  </SafeAreaView>
+  */
+
+  <SafeAreaView>
+      <ToDoList />
+      <ToDoForm />
     </SafeAreaView>
+
+
+
+
   );
+  
+  
 }
+
 
 const styles = StyleSheet.create({
   sectionContainer: {
