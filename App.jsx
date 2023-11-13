@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -27,8 +27,9 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import ToDoList from './ToDoList';
-import ToDoForm from './ToDoForm';
+//import ToDoList from './ToDoList';
+//import ToDoForm from './ToDoForm';
+
 
 
 function Section({children, title}){
@@ -58,11 +59,18 @@ function Section({children, title}){
 }
 
 function App() {
+  const [tasks, setTasks] = useState([
+    'Do laundry',
+    'Go to gym',
+    'Walk dog'
+  ]);
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+  
 
   return (
    /*
@@ -98,8 +106,8 @@ function App() {
   */
 
   <SafeAreaView>
-      <ToDoList />
-      <ToDoForm />
+      <ToDoList tasks={tasks} />
+     
     </SafeAreaView>
 
 
@@ -111,23 +119,28 @@ function App() {
 }
 
 
+function ToDoList({ tasks }) {
+  return (
+    <ScrollView>
+      {tasks.map((task, index) => (
+        <Pressable key={index}>
+          <View style={styles.task}>
+            <Text style={styles.taskText}>{task}</Text>
+          </View>
+        </Pressable>
+      ))}
+    </ScrollView>
+  );
+}
+
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  task: {
+   
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  taskText: {
+   
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+ 
 });
 
 export default App;
