@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 
-function ToDoForm() {
+function ToDoForm({ addTask }) {
+  const [taskText, setTaskText] = useState('');
   return (
     <View style={styles.form}>
       <TextInput
           style={styles.input}
           placeholder="Add a new task..."
+          onChangeText={setTaskText} // Set taskText to the value of the input field
+          value={taskText} // Controlled input has value set to taskText state
         />
-        <Button title="Add" />
+        <Button title="Add Task"
+        onPress={() => {
+          addTask(taskText); // Use addTask with the current taskText
+          setTaskText(''); // Clear the input field after adding a task
+        }}
+      />
     </View>
   );
 }

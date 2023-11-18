@@ -27,8 +27,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-//import ToDoList from './ToDoList';
-//import ToDoForm from './ToDoForm';
+import ToDoList from './ToDoList';
+import ToDoForm from './ToDoForm';
 
 
 
@@ -65,6 +65,12 @@ function App() {
     'Walk dog'
   ]);
 
+  const addTask = (taskText) => {
+    if (taskText && !tasks.includes(taskText)) { // This prevents adding empty and duplicate tasks
+      setTasks([...tasks, taskText]);
+    }
+  };
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -73,52 +79,16 @@ function App() {
   
 
   return (
-   /*
-   <SafeAreaView> 
-    <ScrollView>
-    
-    {*//* Hard-coded tasks *//*}
-      <Pressable>
-        <View style={[styles.task, styles.completed]}>
-          <Text style={styles.taskText}>Do laundry</Text>
-        </View>
-      </Pressable>
-      <Pressable>
-        <View style={styles.task}>
-          <Text style={styles.taskText}>Go to gym</Text>
-        </View>
-      </Pressable>
-      <Pressable>
-        <View style={[styles.task, styles.completed]}>
-          <Text style={styles.taskText}>Walk dog</Text>
-        </View>
-      </Pressable>
-    </ScrollView>
-    {*//* Form to add new tasks *//*}
-    <View style={styles.form}>
-      <TextInput
-        style={styles.input}
-        placeholder="Add a new task..."
-      />
-      <Button title="Add" />
-    </View>
-  </SafeAreaView>
-  */
-
-  <SafeAreaView>
+    <SafeAreaView>
       <ToDoList tasks={tasks} />
-     
+      <ToDoForm addTask={addTask} /> {/* Pass the addTask function as a prop */}
     </SafeAreaView>
-
-
-
-
   );
   
   
 }
 
-
+/*
 function ToDoList({ tasks }) {
   return (
     <ScrollView>
@@ -132,6 +102,7 @@ function ToDoList({ tasks }) {
     </ScrollView>
   );
 }
+*/
 
 const styles = StyleSheet.create({
   task: {
