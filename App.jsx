@@ -59,32 +59,31 @@ function Section({children, title}){
 }
 
 function App() {
-  const [tasks, setTasks] = useState([
-    'Do laundry',
-    'Go to gym',
-    'Walk dog'
-  ]);
+  const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk dog']);
 
   const addTask = (taskText) => {
-    if (taskText && !tasks.includes(taskText)) { // This prevents adding empty and duplicate tasks
-      setTasks([...tasks, taskText]);
+    const trimmedText = taskText.trim();
+    if (trimmedText && !tasks.includes(trimmedText)) {
+      setTasks([...tasks, trimmedText]);
     }
   };
 
+  /*
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-  
+  */
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* ToDoList component is now correctly imported and used */}
       <ToDoList tasks={tasks} />
-      <ToDoForm addTask={addTask} /> {/* Pass the addTask function as a prop */}
+      {/* Pass the addTask function as a prop to ToDoForm */}
+      <ToDoForm addTask={addTask} />
     </SafeAreaView>
   );
-  
   
 }
 
@@ -102,7 +101,6 @@ function ToDoList({ tasks }) {
     </ScrollView>
   );
 }
-*/
 
 const styles = StyleSheet.create({
   task: {
@@ -113,5 +111,5 @@ const styles = StyleSheet.create({
   },
  
 });
-
+*/
 export default App;
