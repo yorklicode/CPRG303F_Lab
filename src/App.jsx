@@ -27,10 +27,14 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import ToDoList from './ToDoList';
-import ToDoForm from './ToDoForm';
+import ToDoList from './components/ToDoList';
+import ToDoForm from './components/ToDoForm';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import AboutScreen from './screens/AboutScreen';
 
-
+const Stack = createStackNavigator();
 
 function Section({children, title}){
   const isDarkMode = useColorScheme() === 'dark';
@@ -59,14 +63,7 @@ function Section({children, title}){
 }
 
 function App() {
-  const [tasks, setTasks] = useState(['Do laundry', 'Go to gym', 'Walk dog']);
-
-  const addTask = (taskText) => {
-    const trimmedText = taskText.trim();
-    if (trimmedText && !tasks.includes(trimmedText)) {
-      setTasks([...tasks, trimmedText]);
-    }
-  };
+ 
 
   /*
   const isDarkMode = useColorScheme() === 'dark';
@@ -77,12 +74,12 @@ function App() {
   */
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      {/* ToDoList component is now correctly imported and used */}
-      <ToDoList tasks={tasks} />
-      {/* Pass the addTask function as a prop to ToDoForm */}
-      <ToDoForm addTask={addTask} />
-    </SafeAreaView>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="About" component={AboutScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
   
 }
