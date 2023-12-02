@@ -21,6 +21,10 @@ function HomeScreen ({ navigation }) {
         title="Go to About"
         onPress={() => navigation.navigate('About')}
       />
+      <Button
+        title="Go to Cat Facts"
+        onPress={() => navigation.navigate('CatFacts')}
+      />
     </MainLayout>
   );
 };

@@ -33,6 +33,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import AboutScreen from './screens/AboutScreen';
+import CatFactsScreen from './screens/CatFactsScreen';
 
 const Stack = createStackNavigator();
 
@@ -78,6 +79,7 @@ function App() {
     <Stack.Navigator>
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="About" component={AboutScreen} />
+      <Stack.Screen name="CatFacts" component={CatFactsScreen} />
     </Stack.Navigator>
   </NavigationContainer>
   );
